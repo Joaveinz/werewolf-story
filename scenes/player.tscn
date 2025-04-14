@@ -202,7 +202,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_tuyoq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -222,3 +222,13 @@ offset_left = 281.0
 offset_top = -251.0
 offset_right = 461.0
 offset_bottom = -211.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -475.0
+offset_top = 239.0
+offset_right = -293.0
+offset_bottom = 266.0
+value = 100.0
+show_percentage = false
