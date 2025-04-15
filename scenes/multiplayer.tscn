@@ -8,18 +8,18 @@ script = ExtResource("1_b0l6s")
 player_scene = ExtResource("2_crvko")
 
 [node name="host" type="Button" parent="."]
-offset_left = 22.0
-offset_top = 61.0
-offset_right = 66.0
-offset_bottom = 92.0
+offset_left = 368.0
+offset_top = 254.0
+offset_right = 412.0
+offset_bottom = 285.0
 text = "Host"
 metadata/_edit_use_anchors_ = true
 
 [node name="join" type="Button" parent="."]
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 60.0
-offset_bottom = 53.0
+offset_left = 368.0
+offset_top = 215.0
+offset_right = 406.0
+offset_bottom = 246.0
 text = "Join"
 metadata/_edit_use_anchors_ = true
 
