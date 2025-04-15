@@ -33,25 +33,25 @@ func _physics_process(delta: float) -> void:
 			# game turn off
 			get_tree().quit()
 
-	# Get the input direction and handle the movement/deceleration.
+		# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+		var direction := Input.get_axis("ui_left", "ui_right")
 
-	if direction && not flamethrower.shooting:
-		# Set speed based on whether running or walking
-		var current_speed = RUN_SPEED if Input.is_action_pressed("ui_shift") else WALK_SPEED
-		velocity.x = direction * current_speed
-		# Play running animation when moving and holding shift, otherwise walk
-		if Input.is_action_pressed("ui_shift"):
-			animated_sprite.play("run")
+		if direction && not flamethrower.shooting:
+			# Set speed based on whether running or walking
+			var current_speed = RUN_SPEED if Input.is_action_pressed("ui_shift") else WALK_SPEED
+			velocity.x = direction * current_speed
+			# Play running animation when moving and holding shift, otherwise walk
+			if Input.is_action_pressed("ui_shift"):
+				animated_sprite.play("run")
+			else:
+				animated_sprite.play("walk")
+			# Flip the sprite based on direction
+			animated_sprite.flip_h = direction < 0
 		else:
-			animated_sprite.play("walk")
-		# Flip the sprite based on direction
-		animated_sprite.flip_h = direction < 0
-	else:
-		velocity.x = move_toward(velocity.x, 0, RUN_SPEED)
-		# Play idle animation when not moving
-		animated_sprite.play("idle")
+			velocity.x = move_toward(velocity.x, 0, RUN_SPEED)
+			# Play idle animation when not moving
+			animated_sprite.play("idle")
 
 	move_and_slide()
 
@@ -89,5 +89,11 @@ func die():
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 1.0)
 	await tween.finished
-	get_tree().reload_current_scene()
 	
+	# respawn the player
+	health = MAX_HEALTH
+	health_bar.value = health
+	position = Vector2(0, 0)  # Reset position to start
+	modulate = Color(1, 1, 1, 1)  # Reset transparency
+	invincible = false
+	 

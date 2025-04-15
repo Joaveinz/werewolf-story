@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bsvkar4xjwnc4" path="res://scenes/flamethrower.png" id="1_1b6hs"]
 [ext_resource type="Script" uid="uid://bttvpxrsphkqg" path="res://scenes/flamethrower.gd" id="1_rkefd"]
-[ext_resource type="Texture2D" uid="uid://f17pthi42gk8" path="res://scenes/sr2def45f04c734.png" id="2_1b6hs"]
+[ext_resource type="Texture2D" uid="uid://f17pthi42gk8" path="res://assets/sr2def45f04c734.png" id="2_1b6hs"]
 
 [sub_resource type="Curve" id="Curve_rkefd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.759124, 0.841463), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.53252), -2.87737, 0.0, 0, 0, Vector2(1, 0.130081), -2.87737, 0.0, 0, 0]
