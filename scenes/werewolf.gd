@@ -4,13 +4,10 @@ extends CharacterBody2D
 
 const SPEED = 200.0  # Slightly slower than player's walk speed
 const GRAVITY = 980.0  # Same gravity as player
-const TURN_DELAY = 0.2  # Seconds to pause after turning
 const ATTACK_DURATION = 1.0  # How long the attack animation plays
 const ATTACK_DAMAGE = 10  # Damage done per attack
 const ATTACK_RANGE = 50.0  # Range at which the werewolf can damage the player
 
-
-var turn_timer = 0.0  # Timer for turning delay
 var current_direction = 1  # Current movement direction (1 = right, -1 = left)
 var is_attacking = false  # Whether the werewolf is currently attacking
 var attack_timer = 0.0  # Timer for attack animation
@@ -34,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		
 		# Check if we need to deal damage to the player
 		if not has_dealt_damage and current_target:
-			try_deal_damage()
+			deal_damage()
 		
 		if attack_timer <= 0:
 			# Reset attack state
@@ -44,13 +41,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("run")
 		
 		# Stop moving during attack
-		velocity.x = 0
-		move_and_slide()
-		return
-	
-	# Handle turning delay
-	if turn_timer > 0:
-		turn_timer -= delta
 		velocity.x = 0
 		move_and_slide()
 		return
@@ -81,48 +71,28 @@ func _physics_process(delta: float) -> void:
 			turn_around()
 	
 	# Check for collision with player
+	# TODO: replace with collisionArea
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
 		# Check if the collider is the player (either by group or by name)
-		if collider.is_in_group("player") or collider.name == "Player":
+		if collider.is_in_group("player"):
 			face_player(collider)
 			current_target = collider  # Store the player as current target
 			start_attack()
 			break
 
-# Try to deal damage to the player if in range
-func try_deal_damage():
-	print("try to deal damage")
-	if not current_target:
-		return
-		
+func deal_damage():
 	# Check if player is still in range
 	var distance = global_position.distance_to(current_target.global_position)
 	if distance <= ATTACK_RANGE:
-		# Deal damage to the player
-		if current_target.has_method("take_damage"):
-			current_target.take_damage(ATTACK_DAMAGE)
-		else:
-			# Fall back to directly accessing health if the method doesn't exist
-			if "health" in current_target:
-				current_target.health -= ATTACK_DAMAGE
-				
-				# Update health bar if it exists
-				if current_target.has_node("HealthBar"):
-					var health_bar = current_target.get_node("HealthBar")
-					health_bar.value = current_target.health
-					
-		# Mark that we've dealt damage in this attack
+		current_target.take_damage(ATTACK_DAMAGE)
 		has_dealt_damage = true
-		print("Werewolf dealt " + str(ATTACK_DAMAGE) + " damage to player")
 
-# Turn the werewolf around
 func turn_around():
 	animated_sprite.flip_h = !animated_sprite.flip_h
-	current_direction = -current_direction  # Reverse the direction
-	turn_timer = TURN_DELAY  # Start the turning delay
+	current_direction = -current_direction
 
 # Make the werewolf face the player
 func face_player(player):
@@ -130,12 +100,8 @@ func face_player(player):
 	var direction_to_player = player.global_position.x - global_position.x
 	
 	# Flip the sprite based on the player's position
-	if direction_to_player > 0:  # Player is to the right
-		animated_sprite.flip_h = false
-		current_direction = 1
-	else:  # Player is to the left
-		animated_sprite.flip_h = true
-		current_direction = -1
+	animated_sprite.flip_h = false if (direction_to_player > 0) else true
+	current_direction = 1 if (direction_to_player > 0) else -1
 
 # Start the attack animation
 func start_attack():
@@ -144,4 +110,3 @@ func start_attack():
 		attack_timer = ATTACK_DURATION
 		has_dealt_damage = false
 		animated_sprite.play("attack_1")
-	
