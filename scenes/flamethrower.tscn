@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxcbno2qgsplw"]
+[gd_scene load_steps=8 format=3 uid="uid://dxcbno2qgsplw"]
 
 [ext_resource type="Texture2D" uid="uid://bsvkar4xjwnc4" path="res://scenes/flamethrower.png" id="1_1b6hs"]
+[ext_resource type="Script" uid="uid://bttvpxrsphkqg" path="res://scenes/flamethrower.gd" id="1_rkefd"]
 [ext_resource type="Texture2D" uid="uid://f17pthi42gk8" path="res://scenes/sr2def45f04c734.png" id="2_1b6hs"]
 
 [sub_resource type="Curve" id="Curve_rkefd"]
@@ -21,9 +22,11 @@ radius = 9.0
 height = 116.0
 
 [node name="Flamethrower" type="Node2D"]
+script = ExtResource("1_rkefd")
 
 [node name="fireEffect" type="GPUParticles2D" parent="."]
 position = Vector2(6, -2)
+emitting = false
 amount = 64
 texture = ExtResource("2_1b6hs")
 lifetime = 2.0
