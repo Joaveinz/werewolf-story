@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxcbno2qgsplw"]
+[gd_scene load_steps=7 format=3 uid="uid://dxcbno2qgsplw"]
 
-[ext_resource type="Texture2D" uid="uid://nk5voncgcm4s" path="res://icon.svg" id="1_rok4f"]
+[ext_resource type="Texture2D" uid="uid://bsvkar4xjwnc4" path="res://scenes/flamethrower.png" id="1_1b6hs"]
 [ext_resource type="Texture2D" uid="uid://f17pthi42gk8" path="res://scenes/sr2def45f04c734.png" id="2_1b6hs"]
 
 [sub_resource type="Curve" id="Curve_rkefd"]
@@ -18,17 +18,30 @@ scale_min = 10.0
 scale_max = 10.0
 scale_curve = SubResource("CurveTexture_6at07")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkefd"]
+radius = 40.0
+height = 184.0
+
 [node name="Flamethrower" type="Node2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-scale = Vector2(1, 0.203125)
-texture = ExtResource("1_rok4f")
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, 9)
+rotation = 0.350075
+scale = Vector2(1.65625, 1.65625)
+texture = ExtResource("1_1b6hs")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="fireEffect" type="GPUParticles2D" parent="."]
+position = Vector2(24, -3)
 texture = ExtResource("2_1b6hs")
 lifetime = 2.0
 speed_scale = 4.0
 explosiveness = 0.1
 randomness = 0.4
 process_material = SubResource("ParticleProcessMaterial_re2ih")
+
+[node name="damageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damageArea"]
+position = Vector2(116, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rkefd")
