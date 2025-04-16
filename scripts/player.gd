@@ -22,6 +22,10 @@ func _enter_tree() -> void:
 			print("This is the local player")
 		else:
 			print("This is a remote player")
+	# Ensure player is in the players group
+	if not is_in_group("players"):
+		add_to_group("players")
+		print("Added player to 'players' group")
 
 func _ready():
 	health_bar.max_value = MAX_HEALTH

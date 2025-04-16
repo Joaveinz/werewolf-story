@@ -6,6 +6,7 @@ extends Camera2D
 func _process(delta):
 	var players = get_tree().get_nodes_in_group("players")
 	if players.is_empty():
+		print("No players found in group 'players'")
 		return
 
 	var min_x = INF

@@ -34,4 +34,13 @@ func _on_join_pressed():
 	print("Joining game...")
 	peer.create_client("localhost", 25565)
 	multiplayer.multiplayer_peer = peer
+	
+	# Wait for connection to be established
+	await get_tree().create_timer(0.1).timeout
+	
+	# Add local player after connection
+	var local_pid = multiplayer.get_unique_id()
+	print("Local player ID: ", local_pid)
+	add_player(local_pid)
+	
 	multiplayer_ui.hide()
