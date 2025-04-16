@@ -36,7 +36,8 @@ func _process(_delta):
 	if Input.is_action_pressed("shoot"):
 		shooting = true
 		fire.emitting = true
-		fire.process_material.set("gravity", Vector3(26 if direction > 0 else -26,0,0))
+		var direction_vector = (get_global_mouse_position() - player.global_position).normalized()
+		fire.process_material.set("gravity", Vector3(direction_vector.x * 26, direction_vector.y * 26, 0))
 	else:
 		shooting = false
 		fire.emitting = false
