@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://bylebsssx033g"]
+[gd_scene load_steps=7 format=4 uid="uid://bylebsssx033g"]
 
-[ext_resource type="Texture2D" uid="uid://pfimr41a01ug" path="res://Platformer assets pack/Tileset/Tileset.png" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://pfimr41a01ug" path="res://assets/Platformer assets pack/Tileset/Tileset.png" id="1_80nbo"]
 [ext_resource type="PackedScene" path="res://scenes/moon_countdown.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://bpxvilqc442m8" path="res://scenes/camera.tscn" id="4_7jktm"]
 [ext_resource type="PackedScene" uid="uid://dl5vcflord70e" path="res://scenes/multiplayer.tscn" id="4_fc0e3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
@@ -800,6 +801,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MultiplayerMenu" parent="." instance=ExtResource("4_fc0e3")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(808, 436)
-scale = Vector2(-0.654191, -0.654191)
+[node name="Camera2D" parent="." instance=ExtResource("4_7jktm")]
+position = Vector2(320, 320)
+scale = Vector2(4, 4)

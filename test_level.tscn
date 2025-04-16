@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://uatjojjul667"]
 
 [ext_resource type="PackedScene" uid="uid://dfuug3dx6ch81" path="res://scenes/player.tscn" id="1_1c2mv"]
-[ext_resource type="Texture2D" uid="uid://pfimr41a01ug" path="res://Platformer assets pack/Tileset/Tileset.png" id="2_f7g2b"]
+[ext_resource type="Texture2D" uid="uid://pfimr41a01ug" path="res://assets/Platformer assets pack/Tileset/Tileset.png" id="2_f7g2b"]
 [ext_resource type="PackedScene" uid="uid://clo6tvje28302" path="res://scenes/werewolf.tscn" id="3_f7g2b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ptq8"]

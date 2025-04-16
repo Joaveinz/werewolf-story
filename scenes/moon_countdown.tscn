@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scenes/moon_countdown.gd" id="1_2k4m3"]
+[ext_resource type="Script" uid="uid://bxp83m0nepqlu" path="res://scripts/moon_countdown.gd" id="1_2k4m3"]
 
 [node name="MoonCountdown" type="Control"]
 layout_mode = 3

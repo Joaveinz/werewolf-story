@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl5vcflord70e"]
 
-[ext_resource type="Script" uid="uid://dpptoh1fl25a6" path="res://multiplayer.gd" id="1_b0l6s"]
+[ext_resource type="Script" uid="uid://dpptoh1fl25a6" path="res://scripts/multiplayer.gd" id="1_b0l6s"]
 
 [sub_resource type="Theme" id="Theme_b0l6s"]
 default_font_size = 40
