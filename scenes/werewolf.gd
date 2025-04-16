@@ -7,12 +7,17 @@ const GRAVITY = 980.0  # Same gravity as player
 const ATTACK_DURATION = 1.0  # How long the attack animation plays
 const ATTACK_DAMAGE = 10  # Damage done per attack
 const ATTACK_RANGE = 50.0  # Range at which the werewolf can damage the player
+const MAX_HEALTH = 50
 
 var current_direction = 1  # Current movement direction (1 = right, -1 = left)
 var is_attacking = false  # Whether the werewolf is currently attacking
 var attack_timer = 0.0  # Timer for attack animation
 var has_dealt_damage = false  # Whether damage has been dealt in current attack
 var current_target = null  # Current target of the attack
+var onFire = false
+var health = MAX_HEALTH
+var invincible = false
+var invincibility_time = 0.1  # Seconds of invincibility after taking damage
 
 func _ready():
 	# Start with the run animation
@@ -83,6 +88,11 @@ func _physics_process(delta: float) -> void:
 			start_attack()
 			break
 
+func _process(_delta: float) -> void:
+	print(health)
+	if(onFire):
+		take_damage(2)
+
 func deal_damage():
 	# Check if player is still in range
 	var distance = global_position.distance_to(current_target.global_position)
@@ -110,3 +120,45 @@ func start_attack():
 		attack_timer = ATTACK_DURATION
 		has_dealt_damage = false
 		animated_sprite.play("attack_1")
+
+# Take damage from an attack
+func take_damage(damage):
+	# Don't take damage if invincible
+	if invincible:
+		return
+	
+	# Reduce health
+	health -= damage
+	
+	## Update health bar
+	#if health_bar:
+		#health_bar.value = health
+	
+	# Visual feedback
+	animated_sprite.modulate = Color(1, 0.5, 0.5)  # Flash red
+	
+	# Make player briefly invincible
+	invincible = true
+	
+	# Use a timer to restore normal appearance and remove invincibility
+	await get_tree().create_timer(0.2).timeout
+	animated_sprite.modulate = Color(1, 1, 1)  # Return to normal color
+	
+	await get_tree().create_timer(invincibility_time - 0.2).timeout
+	invincible = false
+	
+	if health <= 0:
+		die()
+
+func die():
+	# just fade out as death animation
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 1.0)
+	await tween.finished
+	
+	# respawn the player
+	health = MAX_HEALTH
+	#health_bar.value = health
+	position = Vector2(0, 0)  # Reset position to start
+	modulate = Color(1, 1, 1, 1)  # Reset transparency
+	invincible = false

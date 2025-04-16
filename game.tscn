@@ -802,6 +802,5 @@ metadata/_edit_use_anchors_ = true
 [node name="MultiplayerMenu" parent="." instance=ExtResource("4_fc0e3")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(626, 271)
+position = Vector2(808, 436)
 scale = Vector2(-0.654191, -0.654191)
-zoom = Vector2(2, 2)

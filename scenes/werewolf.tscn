@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://ctb1cq0g5r5q4" path="res://Platformer assets pack/Werewolf/Walk.png" id="10_6ip7l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k17ve"]
+radius = 18.996
+height = 37.992
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8yre"]
 atlas = ExtResource("1_typhl")
@@ -571,16 +573,18 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Werewolf" type="CharacterBody2D"]
+[node name="Werewolf" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_k17ve")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.72529e-09, 3)
+rotation = 1.59129
 shape = SubResource("CapsuleShape2D_k17ve")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -5)
 scale = Vector2(0.390625, 0.390625)
 sprite_frames = SubResource("SpriteFrames_3a0jg")
-animation = &"walk"
+animation = &"attack_1"
 autoplay = "walk"
-frame_progress = 0.54197
+frame_progress = 0.524562
