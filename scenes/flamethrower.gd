@@ -22,7 +22,6 @@ func _process(_delta):
 	if (direction_to_mouse > 0 and player.animated_sprite.flip_h) or \
 	   (direction_to_mouse < 0 and not player.animated_sprite.flip_h):
 		fire.emitting = false
-		return
 		
 	look_at(mouse_pos)
 	rotation_degrees = wrap(rotation_degrees, 0, 360)
