@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxcbno2qgsplw"]
+[gd_scene load_steps=9 format=3 uid="uid://dxcbno2qgsplw"]
 
 [ext_resource type="Texture2D" uid="uid://bsvkar4xjwnc4" path="res://assets/flamethrower.png" id="1_1b6hs"]
 [ext_resource type="Script" uid="uid://bttvpxrsphkqg" path="res://scripts/flamethrower.gd" id="1_rkefd"]
@@ -17,12 +17,12 @@ initial_velocity_max = 5.0
 gravity = Vector3(26, 0, 0)
 scale_curve = SubResource("CurveTexture_6at07")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 8.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkefd"]
 radius = 6.0
 height = 62.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
-radius = 8.0
 
 [node name="Flamethrower" type="Node2D"]
 script = ExtResource("1_rkefd")
@@ -76,9 +76,9 @@ position = Vector2(39, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rkefd")
 
-[connection signal="body_entered" from="damageArea" to="." method="_on_damage_area_body_entered"]
-[connection signal="body_exited" from="damageArea" to="." method="_on_damage_area_body_exited"]
 [connection signal="body_entered" from="ParticleCollisions/Collision1" to="." method="_on_particle_collision_entered"]
 [connection signal="body_entered" from="ParticleCollisions/Collision2" to="." method="_on_particle_collision_entered"]
 [connection signal="body_entered" from="ParticleCollisions/Collision3" to="." method="_on_particle_collision_entered"]
 [connection signal="body_entered" from="ParticleCollisions/Collision4" to="." method="_on_particle_collision_entered"]
+[connection signal="body_entered" from="damageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="damageArea" to="." method="_on_damage_area_body_exited"]

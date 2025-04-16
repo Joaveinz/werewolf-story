@@ -31,8 +31,7 @@ func add_player(pid):
 	call_deferred("add_child", player)
 
 func _on_join_pressed():
-	print("Joining game...")
-	peer.create_client("localhost", 25565)
+	peer.create_client("10.67.16.162", 25565)
 	multiplayer.multiplayer_peer = peer
 	
 	# Wait for connection to be established

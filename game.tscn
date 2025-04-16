@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://bylebsssx033g"]
+[gd_scene load_steps=41 format=4 uid="uid://bylebsssx033g"]
 
 [ext_resource type="Texture2D" uid="uid://f1qakn705457" path="res://assets/DarkForest1.2/bgrd_tree1.png" id="1_e8heu"]
 [ext_resource type="Texture2D" uid="uid://dhitu8ryfspio" path="res://assets/DarkForest1.2/bgrd_tree2.png" id="2_rvswv"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cada3h6vr6sa8" path="res://assets/DarkForest1.2/main_background.png" id="12_5b14r"]
 [ext_resource type="Texture2D" uid="uid://bv6m0s7aulac" path="res://assets/DarkForest1.2/top_far_bgrnd.png" id="13_bnpwn"]
 [ext_resource type="Texture2D" uid="uid://d2eueeyf88y3s" path="res://assets/DarkForest1.2/wood_env.png" id="14_36jdj"]
+[ext_resource type="PackedScene" uid="uid://clo6tvje28302" path="res://scenes/werewolf.tscn" id="18_rvswv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xfvwf"]
 texture = ExtResource("1_e8heu")
@@ -10995,3 +10996,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Camera2D" parent="." instance=ExtResource("4_7jktm")]
 position = Vector2(340, 340)
 scale = Vector2(1, 1)
+script = null
+
+[node name="Werewolf" parent="." instance=ExtResource("18_rvswv")]
+position = Vector2(108, 291)
