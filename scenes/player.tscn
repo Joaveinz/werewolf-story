@@ -219,9 +219,6 @@ animation = &"walk"
 autoplay = "idle"
 frame_progress = 0.184485
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="."]

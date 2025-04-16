@@ -6,7 +6,7 @@ extends Node2D
 var direction = -1
 var shooting = false
 
-func _process(delta):
+func _process(_delta):
 	if not player.is_multiplayer_authority():
 		fire.emitting = false
 		return
