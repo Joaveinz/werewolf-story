@@ -7,7 +7,8 @@ var direction = -1
 var shooting = false
 
 func _process(_delta):
-	if not player.is_multiplayer_authority():
+	# Only check multiplayer authority if in multiplayer mode
+	if GameState.is_multiplayer_mode and not player.is_multiplayer_authority():
 		fire.emitting = false
 		return
 		

@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Werewolf Platformer"
-run/main_scene="uid://bylebsssx033g"
+run/main_scene="uid://co7lb4jgbkq1y"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MultiplayerManager="*res://multiplayer_manager.gd"
+GameState="*res://game_state.gd"
 
 [display]
 
