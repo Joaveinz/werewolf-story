@@ -15,7 +15,13 @@ var invincibility_time = 0.1  # Seconds of invincibility after taking damage
 
 func _enter_tree() -> void:
 	if GameState.is_multiplayer_mode:
-		set_multiplayer_authority(name.to_int())
+		var pid = name.to_int()
+		print("Setting multiplayer authority for player ", pid)
+		set_multiplayer_authority(pid)
+		if is_multiplayer_authority():
+			print("This is the local player")
+		else:
+			print("This is a remote player")
 
 func _ready():
 	health_bar.max_value = MAX_HEALTH
