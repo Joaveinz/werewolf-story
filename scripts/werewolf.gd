@@ -8,6 +8,7 @@ const ATTACK_DURATION = 1.0  # How long the attack animation plays
 const ATTACK_DAMAGE = 10  # Damage done per attack
 const ATTACK_RANGE = 50.0  # Range at which the werewolf can damage the player
 const MAX_HEALTH = 50
+const BURN_DAMAGE_INTERVAL = 0.5  # How often to apply burn damage
 
 var current_direction = 1  # Current movement direction (1 = right, -1 = left)
 var is_attacking = false  # Whether the werewolf is currently attacking
@@ -18,6 +19,8 @@ var onFire = false
 var health = MAX_HEALTH
 var invincible = false
 var invincibility_time = 0.1  # Seconds of invincibility after taking damage
+var burn_timer = 0.0  # Timer for burn damage
+var burn_damage_multiplier = 1.0  # Multiplier that decreases over time
 
 func _ready():
 	# Start with the run animation
@@ -88,10 +91,24 @@ func _physics_process(delta: float) -> void:
 			start_attack()
 			break
 
-func _process(_delta: float) -> void:
-	print(health)
-	if(onFire):
-		take_damage(2)
+func _process(delta: float) -> void:
+	# Handle burning effect
+	if onFire:
+		burn_timer += delta
+		if burn_timer >= BURN_DAMAGE_INTERVAL:
+			burn_timer = 0
+			# Calculate burn damage (decreases over time)
+			var burn_damage = 2 * burn_damage_multiplier
+			take_damage(burn_damage)
+			# Decrease the damage multiplier
+			burn_damage_multiplier = max(0.1, burn_damage_multiplier - 0.2)
+			# Visual effect for burning
+			animated_sprite.modulate = Color(1, 0.3, 0.3)  # Red tint
+			await get_tree().create_timer(0.1).timeout
+			animated_sprite.modulate = Color(1, 1, 1)  # Return to normal color
+	else:
+		burn_timer = 0
+		burn_damage_multiplier = 1.0  # Reset damage multiplier when not burning
 
 func deal_damage():
 	# Check if player is still in range
